@@ -68,8 +68,9 @@ function (
 
         // Event used to notify EPiServer that the property value has changed
         onChange: function (value) {
-            console.log('onchange');
-            this.parent.save(value); // HACK Otherwise value won't be saved when Google Places search result item is clicked (instead of using Enter to select it)
+            if(this.parent && typeof this.parent.save === 'function'){
+                this.parent.save(value); // HACK Otherwise value won't be saved when Google Places search result item is clicked (instead of using Enter to select it)
+            }
         },
 
         // Dojo function invoked before rendering
